@@ -37,9 +37,14 @@ SELECT * FROM fame.CONTRACT_T
 where RoyaltyPerc > 20 and 
 current_timestamp() between StartDate and EndDate;
 
-#sum of payments between February and May of 2014
+#payments between February and May of 2015
+SELECT * FROM fame.CUSTOMERPAYMENT_T
+where CPaymentDate between '2015-02-01' and '2015-05-31';
+
+#sum of payments between February and May of 2015
 SELECT sum(amount)FROM fame.CUSTOMERPAYMENT_T
-where CPaymentDate between '2014-02-01' and '2015-05-31';
+where CPaymentDate between '2015-02-01' and '2015-05-31';
+
 
 
 
