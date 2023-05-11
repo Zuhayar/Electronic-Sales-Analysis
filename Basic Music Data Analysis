@@ -1,0 +1,46 @@
+#of artists 
+SELECT count(ArtistID) from fame.ARTIST_T;
+
+#artists personal information 
+SELECT * FROM fame.ARTIST_T;
+
+#firstname,lastname and phone number of all artists 
+SELECT FirstName,LastName,Phone FROM fame.ARTIST_T;
+
+#order by last name 
+SELECT FirstName,LastName,Phone FROM fame.ARTIST_T order by LastName;
+
+#order by last name descending 
+SELECT FirstName,LastName,Phone FROM fame.ARTIST_T order by LastName desc;
+
+#artists in NJ 
+SELECT * FROM fame.ARTIST_T
+where State = 'NJ';
+
+#artist agreements, date and amounts signed for between 1500 and 2000 
+SELECT * FROM fame.AGREEMENT_T
+where GrossAmount between 1500 and 2500;
+
+SELECT * FROM fame.AGREEMENT_T
+where GrossAmount >= 1500 <= 2500;
+
+#all customers with Arts in their company name 
+SELECT * FROM fame.CUSTOMER_T
+where CustomerName like '%Arts%';
+
+#female artists in NJ and PA
+SELECT * FROM fame.ARTIST_T
+where Gender = 'F' and (state = 'NJ' or state = 'PA');
+
+#artists with valid contract that have a royalty percentage of more than 20%
+SELECT * FROM fame.CONTRACT_T
+where RoyaltyPerc > 20 and 
+current_timestamp() between StartDate and EndDate;
+
+#sum of payments between February and May of 2014
+SELECT sum(amount)FROM fame.CUSTOMERPAYMENT_T
+where CPaymentDate between '2014-02-01' and '2015-05-31';
+
+
+
+
