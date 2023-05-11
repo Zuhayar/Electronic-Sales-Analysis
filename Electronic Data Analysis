@@ -4,4 +4,70 @@ https://docs.google.com/spreadsheets/d/1RRk4E1cfFBz2n3KaUIZHg8yCmEOj6qdTrQO5Si8j
 #Data normalization of electronic sales data 
 https://docs.google.com/document/d/16Pj1w3DtCjKIiFDkLaQWkIzFz1WL9ZWVXCt0PzeNmPY/edit?usp=sharing
 
+#Creation of Tables 
+
+# create schema
+create schema ElectronicSales;
+
+# create Customer Table
+create table if not exists ElectronicSales.customer(
+	CustomerNo bigint not null auto_increment,
+    CustomerPhone varchar(15),
+    CustomerCreditCardNo bigint,
+	CreateDateTime DATETIME DEFAULT CURRENT_TIMESTAMP,
+    primary key (CustomerNo));
+    
+# create product group table
+create table if not exists ElectronicSales.productgroup(
+	ProductGroupID int not null auto_increment,
+    ProductGroup varchar (25),
+	CreateDateTime DATETIME DEFAULT CURRENT_TIMESTAMP,
+    primary key (ProductGroupID));
+    
+# create store state table
+create table if not exists ElectronicSales.storestate(
+	StoreStateID varchar(20),
+    StateVPofSales varchar(45),
+	CreateDateTime DATETIME DEFAULT CURRENT_TIMESTAMP,
+    primary key (StoreStateID));
+    
+# create Store Master table
+create table if not exists ElectronicSales.storemaster(
+	StoreNo int not null,
+    StoreAddress varchar(35),
+    StoreStateID varchar(20),
+	CreateDateTime DATETIME DEFAULT CURRENT_TIMESTAMP,
+    primary key (StoreNo),
+	FOREIGN KEY (StoreStateID) references ElectronicSales.storestate(StoreStateID)
+    );
+
+# create product table
+create table if not exists ElectronicSales.product(
+	ProductNo bigint not null,
+    ProdDesc varchar(45),
+    PriceEach dec(13,3),
+    ProductGroupID int,
+	CreateDateTime DATETIME DEFAULT CURRENT_TIMESTAMP,
+    primary key (ProductNo),
+	FOREIGN KEY (ProductGroupID) references ElectronicSales.productgroup(ProductGroupID)
+    );
+
+# Create Order Table 
+create table if not exists ElectronicSales.order(
+	OrderID int not null,
+    OrderDate datetime,
+    Qty int,
+    LineTotal dec(13,3),
+    CustomerNo bigint,
+    StoreNo int,
+    ProductNo bigint,
+	CreateDateTime DATETIME DEFAULT CURRENT_TIMESTAMP,
+    primary key (OrderID),
+    FOREIGN KEY (CustomerNo) references ElectronicSales.customer(CustomerNo),
+	FOREIGN KEY (StoreNo) references ElectronicSales.storemaster(StoreNo),
+    FOREIGN KEY (ProductNo) references ElectronicSales.product(ProductNo)
+    );
+
+
+
 
