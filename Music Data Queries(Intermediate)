@@ -11,3 +11,38 @@ where ArtistID in (select ArtistID from fame.ARTIST_T);
 SELECT * FROM fame.CONTRACT_T
 where ArtistID in (select ArtistID from fame.ARTIST_T where YearOfBirth < 1970); 
 
+#all contract/artist details 
+SELECT * FROM fame.CONTRACT_T as c
+inner join fame.ARTIST_T as a
+where c.ArtistID = a.ArtistID
+order by a.ArtistID;
+
+#relevant data from these 2 tables 
+SELECT C.ArtistID,C.ContractID,A.FirstName,A.LastName,A.YearOfBirth,C.StartDate,C.EndDate,C.RoyaltyPerc 
+FROM fame.CONTRACT_T as C
+inner join fame.ARTIST_T as A 
+on C. ArtistID = A.ArtistID
+order by C.ArtistID; 
+
+#contract details for all artists even if they don't have a contract
+SELECT C.ArtistID,C.ContractID,A.FirstName,A.LastName,A.YearOfBirth,C.StartDate,C.EndDate,C.RoyaltyPerc 
+FROM fame.CONTRACT_T as C 
+right outer join fame.ARTIST_T as A 
+on C.ArtistID = A.ArtistID;
+
+#details for all artists who play the violin 
+SELECT a.FirstName,a.LastName,a.Phone,i.InstrumentName FROM fame.ARTIST_T as a
+inner join fame.ARTISTINSTRUMENT_T as ai
+on a.ArtistID = ai.ArtistID
+inner join fame.INSTRUMENT_T as i
+on ai.InstrumentID = i.InstrumentID
+where InstrumentName = 'Violin';
+
+
+
+
+
+
+
+
+
