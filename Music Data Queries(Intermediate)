@@ -30,6 +30,12 @@ FROM fame.CONTRACT_T as C
 right outer join fame.ARTIST_T as A 
 on C.ArtistID = A.ArtistID;
 
+#artists with highest royalty percentages 
+SELECT C.ArtistID,C.ContractID,A.FirstName,A.LastName,C.RoyaltyPerc FROM fame.CONTRACT_T as C 
+inner join fame.ARTIST_T as A 
+where C.ArtistID = A.ArtistID
+order by C.RoyaltyPerc desc;
+
 #details for all artists who play the violin 
 SELECT a.FirstName,a.LastName,a.Phone,i.InstrumentName FROM fame.ARTIST_T as a
 inner join fame.ARTISTINSTRUMENT_T as ai
