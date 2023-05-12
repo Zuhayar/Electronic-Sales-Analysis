@@ -1,4 +1,13 @@
-#all contracts for every artist 
+#all current contracts 
 SELECT * FROM fame.CONTRACT_T
-where ArtistID in (select ArtistID from fame.ARTIST_T) order by ArtistID;
+where ArtistID in (select ArtistID from fame.ARTIST_T) 
+order by ArtistID;
+
+#number of artists under contract 
+SELECT count(ArtistID) FROM fame.CONTRACT_T
+where ArtistID in (select ArtistID from fame.ARTIST_T); 
+
+#all contracts from artists that were born before 1970
+SELECT * FROM fame.CONTRACT_T
+where ArtistID in (select ArtistID from fame.ARTIST_T where YearOfBirth < 1970); 
 
