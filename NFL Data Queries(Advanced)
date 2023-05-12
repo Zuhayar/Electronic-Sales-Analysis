@@ -3,7 +3,7 @@ create schema NFL;
 
 # create Customer Table
 create table if not exists NFL.Player(
-	jersey int,
+Jersey int,
     Season int,
     Name text,
     Team varchar(3),
