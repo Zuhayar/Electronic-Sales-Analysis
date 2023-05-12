@@ -38,6 +38,15 @@ inner join fame.INSTRUMENT_T as i
 on ai.InstrumentID = i.InstrumentID
 where InstrumentName = 'Violin';
 
+#details of events that were held in California 
+SELECT c.CustomerID,c.CustomerName,c.Phone,c.Email,e.EventID,e.EventDesc,
+e.EventDesc,e.DateTime,v.VenueID,v.VenueName,v.State
+ FROM fame.CUSTOMER_T as c
+inner join fame.EVENT_T as e
+on c.customerID = e.customerID
+inner join fame.VENUE_T as v
+on e.VenueID = v.VenueID
+where v.State = 'CA';
 
 
 
