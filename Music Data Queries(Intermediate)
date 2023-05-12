@@ -1,3 +1,4 @@
-#contract details of all artists 
-SELECT * FROM fame.CONTRACT_T 
-where ArtistID in (select ArtistID from fame.artist_t);
+#all contracts for every artist 
+SELECT * FROM fame.CONTRACT_T
+where ArtistID in (select ArtistID from fame.ARTIST_T) order by ArtistID;
+
