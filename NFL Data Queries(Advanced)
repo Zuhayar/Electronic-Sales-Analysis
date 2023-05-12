@@ -1,1 +1,17 @@
+# create schema
+create schema NFL;
 
+# create Customer Table
+create table if not exists NFL.Player(
+	jersey int,
+    Season int,
+    Name text,
+    Team varchar(3),
+    Age decimal(2,1),
+    Position varchar(2),
+    GamesPlayed int,
+    GamesStarted int,
+    RushingTD int,
+    RecievingTD int
+    );
+    
