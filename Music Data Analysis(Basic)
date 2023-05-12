@@ -45,6 +45,18 @@ where CPaymentDate between '2015-02-01' and '2015-05-31';
 SELECT sum(amount)FROM fame.CUSTOMERPAYMENT_T
 where CPaymentDate between '2015-02-01' and '2015-05-31';
 
+#number of events per venue 
+SELECT venueID, count(EventID) FROM fame.EVENT_T
+group by VenueID;
+
+#number of events held in venue 2 
+SELECT venueID, count(EventID) FROM fame.EVENT_T
+where venueID = '2';
+
+#venues where 2 or more events were held 
+SELECT venueID, count(eventID) FROM fame.EVENT_T
+group by venueID
+having count(EventID) >= 2;
 
 
 
