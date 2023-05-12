@@ -58,6 +58,10 @@ SELECT venueID, count(eventID) FROM fame.EVENT_T
 group by venueID
 having count(EventID) >= 2;
 
+#all expense types of M that are less that $100 and expense types of A that are less than $50 
+SELECT * FROM fame.EXPENSE_T
+where (ExpenseType = 'M' and Amount < 100) or (ExpenseType = 'A' and amount < 50); 
+
 
 
 
